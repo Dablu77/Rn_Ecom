@@ -9,11 +9,11 @@ const Stack = createNativeStackNavigator();
 function CartStack() {
     return (
         <Stack.Navigator>
-            {/* <Stack.Screen
+            <Stack.Screen
                 name="Cart"
                 component={Cart}
                 options={{ headerShown: false }}
-            /> */}
+            />
             <Stack.Screen
                 name="Payment"
                 component={Payment}

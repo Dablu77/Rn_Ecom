@@ -9,28 +9,17 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome';
 import MyCart from '../Components/Common/MyCart';
 import ActionSheet from 'react-native-actions-sheet';
 
-
-
 const { height, width } = Dimensions.get('window');
-
-
-export default function HomeScreen() {
-
+export default function HomeScreen({ navigation }) {
     const [myCart, setMyCart] = useState(false)
     const [myCartOne, setMyCartOne] = useState(false)
-
     const [showSearch, setSHowSearch] = useState(false)
     const [index, setIndex] = useState(0);
     const [isIndex, setIsIndex] = useState(0)
-
-
-
     const actionSheetRef = createRef(false);
     const toggleBottomNavigationView = () => {
         actionSheetRef?.current?.setModalVisible(true);
     };
-
-
     const Srt = [
         {
             image: '66363',
@@ -129,12 +118,12 @@ export default function HomeScreen() {
 
             <View>
                 {showSearch === true ? (
-                    <View style={{ marginHorizontal: 10, elevation: 10, height: heightPixel(45), paddingHorizontal: 10, borderRadius: 7, alignItems: 'center', backgroundColor: '#ffff', flexDirection: 'row', }}>
+                    <View style={{ elevation: 10, marginHorizontal: 10, elevation: 10, height: heightPixel(45), paddingHorizontal: 10, borderRadius: 7, alignItems: 'center', backgroundColor: '#ffff', flexDirection: 'row', }}>
                         <EvilIcons name="search" color={"#313232"} size={28} />
                         <TextInput
                             placeholder="Search"
                             placeholderTextColor='grey'
-                            style={{ width: widthPixel(300), paddingHorizontal: 5 }}
+                            style={{ width: widthPixel(300), paddingHorizontal: 5, }}
                         />
                     </View>
                 ) : null}
@@ -388,7 +377,12 @@ export default function HomeScreen() {
 
                         <View style={{ marginVertical: 20, justifyContent: 'space-between', flexDirection: 'row', marginHorizontal: 10 }}>
                             <Text style={{ color: "black", fontSize: 15, fontWeight: '500' }}>Product info</Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                // onPress={() => navigation.navigate('Productinfo')}
+                                onPress={() => navigation.navigate('Productinfo')}
+                            // onPress={() => navigation.navigate('OrderTracking')}
+
+                            >
                                 <MaterialIcons name="keyboard-arrow-right" color={Colour.Lightgrey} size={33} />
                             </TouchableOpacity>
                         </View>

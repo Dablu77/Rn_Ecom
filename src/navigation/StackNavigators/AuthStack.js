@@ -5,6 +5,7 @@ import BottomNavigator from '../BottomNavigator';
 import Location from '../../screen/Location';
 import Login from '../../screen/Login';
 import Otp from '../../screen/Otp';
+import OrderTracking from '../../screen/OrderTracking';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,11 @@ function AuthStack() {
       <Stack.Screen
         name="BottomNavigator"
         component={BottomNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OrderTracking"
+        component={OrderTracking}
         options={{ headerShown: false }}
       />
 

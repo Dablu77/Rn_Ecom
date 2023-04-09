@@ -11,7 +11,6 @@ export default function Location({ navigation }) {
     return (
         <SafeAreaView style={{ flex: 1, }}>
             <ScrollView>
-
                 <View style={{ marginTop: "15%", marginHorizontal: 10, borderColor: Colour.Orange, borderRadius: 7, }}>
                     <TextInput
                         label="Choose your location"
