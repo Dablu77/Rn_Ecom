@@ -378,8 +378,8 @@ export default function HomeScreen({ navigation }) {
                         <View style={{ marginVertical: 20, justifyContent: 'space-between', flexDirection: 'row', marginHorizontal: 10 }}>
                             <Text style={{ color: "black", fontSize: 15, fontWeight: '500' }}>Product info</Text>
                             <TouchableOpacity
-                                // onPress={() => navigation.navigate('Productinfo')}
-                                onPress={() => navigation.navigate('Productinfo')}
+                            // onPress={() => navigation.navigate('Productinfo')}
+                            // onPress={() => navigation.navigate('Productinfo')}
                             // onPress={() => navigation.navigate('OrderTracking')}
 
                             >
