@@ -12,7 +12,7 @@ export default function Profile({ navigation }) {
     const [index, setIndex] = useState(0);
 
     return (
-        <SafeAreaView style={{ flex: 1, }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: Colour.White }}>
             <MyHeader
                 title={"Profile"}
                 titletwo={'Help'}
@@ -176,7 +176,7 @@ export default function Profile({ navigation }) {
                         </View>
                         <View style={{ paddingTop: 10 }}>
 
-                            <MyButton title={'Request'} />
+                            <MyButton title={'Request'} onPress={() => setModalVisible(!modalVisible)} />
                         </View>
                     </View>
                 </View>

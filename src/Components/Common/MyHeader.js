@@ -25,7 +25,7 @@ const MyHeader = props => {
                             style={{
                                 fontWeight: 'bold',
                                 fontSize: fontPixel(20),
-                                color: Colour.Balck,
+                                color: Colour.Black,
                                 paddingLeft: "5%"
                             }}>
                             {props.title}

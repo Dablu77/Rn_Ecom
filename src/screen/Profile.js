@@ -8,7 +8,7 @@ import Colour from '../Components/utils/Colour';
 
 export default function Profile({ navigation }) {
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: Colour.White }}>
             <MyHeader
                 title={"Profile"}
                 titletwo={'Help'}

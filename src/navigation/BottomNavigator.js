@@ -5,9 +5,7 @@ import Imagehomeicone from '../assets/home.png';
 import categoryIcone from '../assets/categoryIcone.png'
 import ShoppingCartSimple from '../assets/ShoppingCartSimple.png'
 import UserCircle from '../assets/UserCircle.png'
-
 import { Image } from 'react-native';
-
 import CatgoryStack from './StackNavigators/CatgoryStack';
 import HomeStack from './StackNavigators/HomeStack';
 import ProfileStack from './StackNavigators/ProfileStack';

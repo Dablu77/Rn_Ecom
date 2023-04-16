@@ -61,7 +61,9 @@ export default function Cart({ navigation }) {
             </TouchableOpacity>
             <ScrollView showsVerticalScrollIndicator={false}>
                 {SrtData.map((item, index) => (
-                    <View style={{ flexDirection: 'row', justifyContent: "space-between", borderBottomWidth: 0.5, paddingVertical: 15, paddingHorizontal: 15, alignItems: 'center' }}>
+                    <View
+                        key={index}
+                        style={{ flexDirection: 'row', justifyContent: "space-between", borderBottomWidth: 0.5, paddingVertical: 15, paddingHorizontal: 15, alignItems: 'center' }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Image source={require('../assets/Rectangle4619.png')} style={{ height: heightPixel(80), width: widthPixel(80), }} />
                             <View style={{ paddingLeft: 10 }}>
