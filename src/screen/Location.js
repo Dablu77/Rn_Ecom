@@ -1,13 +1,85 @@
 import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-import MapView from 'react-native-maps';
+import React, { useEffect, useState } from 'react'
+import MapView, { Marker } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Colour from '../Components/utils/Colour';
 import { fontPixel, heightPixel, widthPixel } from '../Components/Dimensions';
 import MyButton from '../Components/Common/MyButton';
+import * as Locationone from 'expo-location';
+
+
+const API_KEY = 'AIzaSyChkQstsYAs6SgA0d4UIIBnhXfK_wf0iV4';
 
 export default function Location({ navigation }) {
     const [text, setText] = useState("");
+    const [_Coordinates, set_Coordinates] = useState('')
+
+    useEffect(() => {
+        requestLocationPermission();
+        getCurrentLocation();
+        // getAddress()
+        // runFunction()
+
+
+    }, [])
+
+    async function requestLocationPermission() {
+        const { status } = await Locationone.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            console.log('Permission to access location was denied');
+            return;
+        }
+    }
+
+    async function getCurrentLocation() {
+        const { coords } = await Locationone.getCurrentPositionAsync({});
+        const { latitude, longitude } = coords;
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        set_Coordinates(coords)
+        console.log('====================================', coords);
+    }
+
+
+
+    // async function getAddress() {
+    //     const location = await getCurrentLocation();
+    //     const addressList = await Geocoding.reverseGeocodeAsync(location);
+    //     const address = addressList[0].postalCode;
+    //     console.log(address);
+    // }
+
+    // const [location, setLocation] = useState('')
+
+    // console.log('====================================Dg', location);
+    // const runFunction = async () => {
+    //     let { status } = await Location.requestPermissionsAsync();
+    //     if (status !== 'granted') {
+    //         setErrorMsg('Access to Location denied');
+    //     }
+
+    //     const location = await Location.getCurrentPositionAsync({});
+    //     set_Coordinates(location)
+
+    //     const place = await Location.reverseGeocodeAsync({
+    //         latitude: _Coordinates.latitude,
+    //         longitude: _Coordinates.longitude
+    //     });
+    //     console.log("++++++++++++++DG", _Coordinates)
+
+    //     let city;
+    //     place.find(p => {
+    //         city = p.city
+    //         setCity(p.city)
+    //     });
+
+    //     const response = await TimeApi.get(`/${city}.json`);
+    //     // setTime(response.data);
+    //     console.log(response.data);
+
+    // }
+
+
+
     return (
         <SafeAreaView style={{ flex: 1, }}>
             <ScrollView>
@@ -30,7 +102,7 @@ export default function Location({ navigation }) {
                     overflow: 'hidden',
                     marginHorizontal: 10,
                 }}>
-                    <MapView
+                    {_Coordinates && <MapView
                         // style={{
                         //     height: '100%',
                         //     width: '100%',
@@ -38,12 +110,21 @@ export default function Location({ navigation }) {
                         // }}
                         style={StyleSheet.absoluteFill}
                         initialRegion={{
-                            latitude: 28.5355,
-                            longitude: 77.391,
+                            latitude: _Coordinates.latitude,
+                            longitude: _Coordinates.longitude,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                         }}
-                    />
+
+                    >
+                        <Marker
+                            coordinate={{
+                                latitude: _Coordinates.latitude,
+                                longitude: _Coordinates.longitude,
+                            }}
+                        // title={address}
+                        />
+                    </MapView>}
                 </View>
                 <TouchableOpacity style={{ marginTop: 20, alignItems: 'flex-end', paddingHorizontal: 15 }}>
                     <Image source={require("../assets/Vectoradd.png")} style={{ height: 25, width: 25 }} />

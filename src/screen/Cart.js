@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, FlatList, Image, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList, Image, ScrollView, SafeAreaView, Modal, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import MyButton from '../Components/Common/MyButton'
 import Colour from '../Components/utils/Colour'
@@ -6,9 +6,13 @@ import MyHeader from '../Components/Common/MyHeader'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { fontPixel, heightPixel, widthPixel } from '../Components/Dimensions'
+// import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 export default function Cart({ navigation }) {
     const [index, setIndex] = useState(0);
+    const [modalVisible, setModalVisible] = useState(false);
+
     const SrtData = [
         {
             NameItem: 'Beans',
@@ -48,13 +52,15 @@ export default function Cart({ navigation }) {
         },
     ]
     return (
-        <View style={{ flex: 1, backgroundColor: Colour.White }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: Colour.White }}>
             <MyHeader
                 title={"Cart"}
                 titletwo={'Help'}
                 onPress={() => navigation.goBack()}
             />
-            <TouchableOpacity style={{ flexDirection: 'row', marginHorizontal: 15, alignItems: 'center', }}>
+            <TouchableOpacity
+                onPress={() => setModalVisible(!modalVisible)}
+                style={{ flexDirection: 'row', marginHorizontal: 15, alignItems: 'center', }}>
                 <Ionicons name="ios-home" color={Colour.Orange} size={18} />
                 <Text style={{ paddingLeft: 10, fontWeight: '500', }}>Mathil Perul Mathamangalam.....</Text>
                 <MaterialIcons name="keyboard-arrow-down" color={Colour.Lightgrey} size={32} />
@@ -141,6 +147,55 @@ export default function Cart({ navigation }) {
                 </View>
                 <MyButton title={"Proceed to Pay"} onPress={() => navigation.navigate('Payment')} />
             </ScrollView>
-        </View>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    Alert.alert('Modal has been closed.');
+                    setModalVisible(!modalVisible);
+                }}>
+
+                <View style={Styles.centeredView}>
+                    <View style={Styles.modalView}>
+                        <View style={{ paddingHorizontal: 5, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start', height: heightPixel(100), borderWidth: 1, marginHorizontal: 15, borderRadius: 10, borderColor: Colour.Orange, backgroundColor: Colour.Crimson, elevation: 10, }}>
+                            <Image source={require('../assets/homeLoctions.png')} style={{ height: 50, width: 50 }} />
+                            <Text style={{ color: Colour.Lightgrey, fontSize: 15, left: 5 }}>Mathil Perul Mathamangalam {"\n"}Rd
+                                {"\n"} ,Town	Mathil
+                                Kerala
+                                ,49852581500</Text>
+                        </View>
+                        <View style={{ paddingHorizontal: 5, marginTop: 20, alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start', height: heightPixel(100), borderWidth: 1, marginHorizontal: 15, borderRadius: 10, borderColor: Colour.Orange, backgroundColor: Colour.Crimson, elevation: 10, }}>
+                            <Image source={require('../assets/nounofficelocation.png')} style={{ height: 40, width: 40 }} />
+                            <Text style={{ color: Colour.Lightgrey, fontSize: 15, left: 5 }}>Mathil Perul Mathamangalam {"\n"}Rd
+                                {"\n"} ,Town	Mathil
+                                Kerala
+                                ,49852581500</Text>
+                        </View>
+                        <View style={{ top: 25 }}>
+                            <MyButton
+                                title={'Add New'}
+                                onPress={() => setModalVisible(!modalVisible)} />
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+        </SafeAreaView>
     )
 }
+
+const Styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        // justifyContent: 'center',
+        backgroundColor: 'rgba(52, 52, 52, 0.6)',
+        paddingVertical: "30%"
+    },
+    modalView: {
+        paddingVertical: 35,
+        backgroundColor: Colour.White,
+        marginHorizontal: 20,
+        borderRadius: 15
+    }
+
+})
